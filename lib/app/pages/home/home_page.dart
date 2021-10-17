@@ -33,16 +33,66 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: Column(
-        children: const [
-          Text('TESTE 1'),
-          Text('TESTE 1'),
-          Text('TESTE 1'),
-          Text('TESTE 1'),
-          Text('TESTE 1'),
-          Text('TESTE 1'),
-          Text('TESTE 1'),
-          Text('TESTE 1'),
-          Text('TESTE 4'),
+        children: [
+          SizedBox(
+            width: 500,
+            child: Card(
+              color: Colors.redAccent,
+              elevation: 20,
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.play_circle_fill_rounded,
+                          size: 125,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Text(
+                              'Heart Shaker',
+                              style: TextStyle(fontSize: 25, color: Colors.white),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Text(
+                              'TWICE',
+                              style: TextStyle(fontSize: 25, color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: const [
+                          Text(
+                            'Edit',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          Text(
+                            'Delete',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );
