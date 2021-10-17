@@ -34,66 +34,91 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         children: [
-          SizedBox(
+          Container(
+            margin: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(50),
+            color: Colors.blue,
+            child: const Text('Conteudo'),
+          ),
+          Container(
+            height: 500,
             width: 500,
-            child: Card(
-              color: Colors.redAccent,
-              elevation: 20,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.play_circle_fill_rounded,
-                          size: 125,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text(
-                              'Heart Shaker',
-                              style: TextStyle(fontSize: 25, color: Colors.white),
-                            ),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Text(
-                              'TWICE',
-                              style: TextStyle(fontSize: 25, color: Colors.white),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: const [
-                          Text(
-                            'Edit',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          Text(
-                            'Delete',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
+            color: Colors.red,
+            child: Container(
+              margin: const EdgeInsets.all(10),
+              color: Colors.green,
+              child: Container(
+                margin: const EdgeInsets.all(10),
+                color: Colors.orange,
+                child: Container(
+                  margin: const EdgeInsets.all(10),
+                  color: Colors.teal,
                 ),
               ),
             ),
-          )
+          ),
+          _buildCard(),
         ],
+      ),
+    );
+  }
+
+  SizedBox _buildCard() {
+    return SizedBox(
+      width: 500,
+      child: Card(
+        color: Colors.redAccent,
+        elevation: 20,
+        margin: const EdgeInsets.all(10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Icon(
+                  Icons.play_circle_fill_rounded,
+                  size: 125,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      'Heart Shaker',
+                      style: TextStyle(fontSize: 25, color: Colors.white),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      'TWICE',
+                      style: TextStyle(fontSize: 25, color: Colors.white),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: const [
+                  Text(
+                    'Edit',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    'Delete',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
