@@ -1,4 +1,6 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -10,6 +12,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  AudioPlayer audioPlayer = AudioPlayer();
+
+  Future<void> playBackground() async {
+    await audioPlayer.play('assets/music/darkorbit.mp3');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,106 +30,103 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         actions: [
           IconButton(
-            icon: const Icon(Icons.access_alarm),
-            tooltip: 'Open shopping cart',
-            onPressed: () {
-              // handle the press
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.shopping_cart),
-            tooltip: 'Open shopping cart',
-            onPressed: () {
-              // handle the press
-            },
+            icon: const Icon(Icons.tag_faces_outlined),
+            tooltip: 'Area de teste',
+            onPressed: () {},
           ),
         ],
       ),
-      body: Column(
+      body: Stack(
         children: [
           Container(
-            margin: const EdgeInsets.all(20),
-            padding: const EdgeInsets.all(50),
-            color: Colors.blue,
-            child: const Text('Conteudo'),
-          ),
-          Container(
-            height: 500,
-            width: 500,
-            color: Colors.red,
-            child: Container(
-              margin: const EdgeInsets.all(10),
-              color: Colors.green,
-              child: Container(
-                margin: const EdgeInsets.all(10),
-                color: Colors.orange,
-                child: Container(
-                  margin: const EdgeInsets.all(10),
-                  color: Colors.teal,
-                ),
+            constraints: const BoxConstraints.expand(),
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                stops: [
+                  0.0,
+                  0.19,
+                  0.85,
+                  1,
+                ],
+                colors: [
+                  Colors.black,
+                  Colors.purple,
+                  Colors.yellow,
+                  Colors.orange,
+                ],
               ),
             ),
           ),
-          _buildCard(),
+          _buildBody(),
         ],
       ),
     );
   }
 
-  SizedBox _buildCard() {
-    return SizedBox(
-      width: 500,
-      child: Card(
-        color: Colors.redAccent,
-        elevation: 20,
-        margin: const EdgeInsets.all(10),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const Icon(
-                  Icons.play_circle_fill_rounded,
-                  size: 125,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      'Heart Shaker',
-                      style: TextStyle(fontSize: 25, color: Colors.white),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      'TWICE',
-                      style: TextStyle(fontSize: 25, color: Colors.white),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
-                  Text(
-                    'Edit',
-                    style: TextStyle(color: Colors.white),
+  Container _buildBody() {
+    var sizeText = const TextStyle(fontSize: 50);
+    return Container(
+      constraints: const BoxConstraints.expand(),
+      child: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width * .8,
+                alignment: Alignment.center,
+                child: Container(
+                  height: 200,
+                  alignment: Alignment.bottomCenter,
+                  child: AnimatedTextKit(
+                    animatedTexts: [
+                      ScaleAnimatedText(
+                        'FLAUTISTAS',
+                        textStyle: sizeText,
+                      ),
+                      ScaleAnimatedText(
+                        'NEVER',
+                        textStyle: sizeText,
+                      ),
+                      ScaleAnimatedText(
+                        'DIE',
+                        textStyle: sizeText,
+                      ),
+                    ],
                   ),
-                  Text(
-                    'Delete',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ],
+                ),
               ),
-            )
+              _buildCard(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Card _buildCard() {
+    return Card(
+      margin: const EdgeInsets.all(50),
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+            const Text('Login'),
+            TextFormField(),
+            const SizedBox(height: 20),
+            const Text('Senha'),
+            TextFormField(
+              obscureText: true,
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              child: const Text('ENTRAR'),
+              onPressed: () async {
+                playBackground();
+              },
+            ),
           ],
         ),
       ),
