@@ -36,6 +36,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   animated_text_kit: ^4.2.1
   audioplayers: ^0.20.1
+  firebase_core: ^1.11.0
+  cloud_firestore: ^3.1.6
+  url_launcher: ^6.0.18
 
 dev_dependencies:
   flutter_test:

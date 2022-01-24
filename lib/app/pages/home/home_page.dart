@@ -1,7 +1,10 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:site_flautistas/app/functions/games_service.dart';
+import 'package:site_flautistas/app/models/game_model.dart';
 import 'package:site_flautistas/app/pages/area_teste/test_page.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -72,65 +75,79 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Container _buildBody() {
+    GamesService gameService = GamesService();
+
+    final games = gameService.getGamesOnline();
+
     var sizeText = const TextStyle(fontSize: 50);
+
     return Container(
       constraints: const BoxConstraints.expand(),
       child: Center(
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width * .8,
-                alignment: Alignment.center,
-                child: Container(
-                  height: 200,
-                  alignment: Alignment.bottomCenter,
-                  child: AnimatedTextKit(
-                    animatedTexts: [
-                      ScaleAnimatedText(
-                        'FLAUTISTAS',
-                        textStyle: sizeText,
-                      ),
-                      ScaleAnimatedText(
-                        'NEVER',
-                        textStyle: sizeText,
-                      ),
-                      ScaleAnimatedText(
-                        'DIE',
-                        textStyle: sizeText,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              _buildCard(),
-            ],
+          child: FutureBuilder<List<GameModel>>(
+            future: games,
+            builder: (BuildContext context, AsyncSnapshot<List<GameModel>> snapshot) {
+              if (snapshot.hasError) {
+                return const Text("Ocorreu um erro nessa merda");
+              }
+
+              if (snapshot.hasData && snapshot.data!.isEmpty) {
+                return const Text("Sem jogos para exibir");
+              }
+
+              if (snapshot.connectionState == ConnectionState.done) {
+                final gamesFirebase = snapshot.data!;
+                return GridView.count(
+                  primary: false,
+                  shrinkWrap: true,
+                  crossAxisCount: 2,
+                  children: [
+                    for (var game in gamesFirebase) _buildCard(game),
+                  ],
+                );
+              }
+
+              return const Text("Carregando jogos de nerdolas");
+            },
           ),
         ),
       ),
     );
   }
 
-  Card _buildCard() {
+  Card _buildCard(GameModel gameModel) {
     return Card(
       margin: const EdgeInsets.all(50),
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            const Text('Login'),
-            TextFormField(),
-            const SizedBox(height: 20),
-            const Text('Senha'),
-            TextFormField(
-              obscureText: true,
+            Flexible(
+              flex: 3,
+              child: Image.network(
+                gameModel.imagem,
+                fit: BoxFit.fitHeight,
+              ),
             ),
-            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: Text(
+                gameModel.nome,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
+            ),
             ElevatedButton(
-              child: const Text('ENTRAR'),
+              child: const Text('BAIXAR'),
               onPressed: () async {
-                playBackground();
+                if (!await launch(
+                  gameModel.link,
+                )) {
+                  throw 'Não foi possível abrir ${gameModel.link}';
+                }
               },
             ),
           ],
