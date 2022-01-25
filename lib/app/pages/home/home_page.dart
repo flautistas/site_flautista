@@ -32,18 +32,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.tag_faces_outlined),
-            tooltip: 'Area de teste',
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const TestPage()),
-              );
-            },
-          ),
-        ],
       ),
       body: Stack(
         children: [
@@ -101,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 return GridView.count(
                   primary: false,
                   shrinkWrap: true,
-                  crossAxisCount: 2,
+                  crossAxisCount: MediaQuery.of(context).size.width < 400 ? 1 : 2,
                   children: [
                     for (var game in gamesFirebase) _buildCard(game),
                   ],
@@ -118,10 +106,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Card _buildCard(GameModel gameModel) {
     return Card(
-      margin: const EdgeInsets.all(50),
+      margin: const EdgeInsets.all(10),
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Flexible(
               flex: 3,
