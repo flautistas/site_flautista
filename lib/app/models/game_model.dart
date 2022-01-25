@@ -9,8 +9,9 @@ class GameModel {
     required this.nome,
     this.descricao = 'lorem lorem lorem lorem lorem',
     this.imagem = '',
-    this.tipo = '',
-    this.link = 'https://www.youtube.com/watch?v=T8r3cWM4JII&ab_channel=oskar1101pl',
+    this.tipo = 'Jogo',
+    this.link =
+        'https://www.youtube.com/watch?v=T8r3cWM4JII&ab_channel=oskar1101pl',
   });
 
   static GameModel fromJson(Map data) {
@@ -19,7 +20,8 @@ class GameModel {
       descricao: data['descricao'] ?? '',
       tipo: data['tipo'] ?? '',
       imagem: data['imagem'] ?? '',
-      link: data['link'] ?? 'https://www.youtube.com/watch?v=T8r3cWM4JII&ab_channel=oskar1101pl',
+      link: data['link'] ??
+          'https://www.youtube.com/watch?v=T8r3cWM4JII&ab_channel=oskar1101pl',
     );
   }
 }

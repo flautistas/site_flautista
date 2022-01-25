@@ -1,9 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:site_flautistas/app/functions/games_service.dart';
 import 'package:site_flautistas/app/models/game_model.dart';
-import 'package:site_flautistas/app/pages/area_teste/test_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -125,21 +123,23 @@ class _MyHomePageState extends State<MyHomePage> {
                 gameModel.nome,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 16,
+                  fontSize: 25,
                 ),
               ),
             ),
             Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 100, vertical: 40),
                 child: Text(
                   gameModel.descricao,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 12,
+                    fontSize: 18,
                   ),
                 )),
             ElevatedButton(
-              child: const Text('BAIXAR'),
+              child: const Center(
+                  widthFactor: 5, heightFactor: 4, child: Text('BAIXAR ')),
               onPressed: () async {
                 if (!await launch(
                   gameModel.link,
@@ -147,6 +147,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   throw 'Não foi possível abrir ${gameModel.link}';
                 }
               },
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Text(
+                gameModel.tipo,
+                style: const TextStyle(
+                    fontWeight: FontWeight.normal, fontSize: 18),
+              ),
             ),
           ],
         ),
