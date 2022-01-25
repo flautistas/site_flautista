@@ -67,15 +67,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final games = gameService.getGamesOnline();
 
-    var sizeText = const TextStyle(fontSize: 50);
-
     return Container(
       constraints: const BoxConstraints.expand(),
       child: Center(
         child: SingleChildScrollView(
           child: FutureBuilder<List<GameModel>>(
             future: games,
-            builder: (BuildContext context, AsyncSnapshot<List<GameModel>> snapshot) {
+            builder: (BuildContext context,
+                AsyncSnapshot<List<GameModel>> snapshot) {
               if (snapshot.hasError) {
                 return const Text("Ocorreu um erro nessa merda");
               }
@@ -89,7 +88,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 return GridView.count(
                   primary: false,
                   shrinkWrap: true,
-                  crossAxisCount: MediaQuery.of(context).size.width < 400 ? 1 : 2,
+                  crossAxisCount:
+                      MediaQuery.of(context).size.width < 400 ? 1 : 2,
                   children: [
                     for (var game in gamesFirebase) _buildCard(game),
                   ],
@@ -129,6 +129,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
+            Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: Text(
+                  gameModel.descricao,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 12,
+                  ),
+                )),
             ElevatedButton(
               child: const Text('BAIXAR'),
               onPressed: () async {
