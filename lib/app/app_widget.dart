@@ -11,7 +11,7 @@ class AppWidget extends StatelessWidget {
       title: 'Site dos Flautistas ',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.purple,
+        primarySwatch: Colors.indigo,
       ),
       home: const MyHomePage(title: 'Flautistas Site'),
     );

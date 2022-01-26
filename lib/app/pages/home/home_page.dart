@@ -29,6 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color.fromRGBO(18, 10, 143, 20),
         title: Text(widget.title),
       ),
       body: Stack(
@@ -47,9 +48,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
                 colors: [
                   Colors.black,
-                  Colors.purple,
-                  Colors.yellow,
-                  Colors.orange,
+                  Colors.indigo,
+                  Colors.blue,
+                  Colors.lightBlue,
                 ],
               ),
             ),
@@ -94,7 +95,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               }
 
-              return const Text("Carregando jogos de nerdolas");
+              return const Text("CARREGANDO JOGOS DE NERDOLAS",
+                  style: TextStyle(
+                    fontWeight: FontWeight.normal,
+                    fontSize: 30,
+                  ));
             },
           ),
         ),
@@ -104,59 +109,87 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Card _buildCard(GameModel gameModel) {
     return Card(
+      elevation: 30,
+      color: Colors.transparent,
       margin: const EdgeInsets.all(10),
       child: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Flexible(
-              flex: 3,
-              child: Image.network(
-                gameModel.imagem,
-                fit: BoxFit.fitHeight,
-              ),
+        child: Container(
+          constraints: const BoxConstraints.expand(),
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              stops: [
+                0.0,
+                0.19,
+                0.85,
+                1,
+              ],
+              colors: [
+                Colors.black,
+                Colors.indigo,
+                Colors.indigo,
+                Colors.black,
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20),
-              child: Text(
-                gameModel.nome,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Flexible(
+                flex: 3,
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                      shadowColor:
+                          MaterialStateProperty.all(Colors.transparent),
+                      overlayColor:
+                          MaterialStateProperty.all(Colors.transparent)),
+                  child: Image.network(
+                    gameModel.imagem,
+                    fit: BoxFit.fitHeight,
+                  ),
+                  onPressed: () async {
+                    if (!await launch(
+                      gameModel.link,
+                    )) {
+                      throw 'Não foi possível abrir ${gameModel.link}';
+                    }
+                  },
                 ),
               ),
-            ),
-            Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 100, vertical: 40),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
                 child: Text(
-                  gameModel.descricao,
+                  gameModel.nome,
                   style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                )),
-            ElevatedButton(
-              child: const Center(
-                  widthFactor: 5, heightFactor: 4, child: Text('BAIXAR ')),
-              onPressed: () async {
-                if (!await launch(
-                  gameModel.link,
-                )) {
-                  throw 'Não foi possível abrir ${gameModel.link}';
-                }
-              },
-            ),
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Text(
-                gameModel.tipo,
-                style: const TextStyle(
-                    fontWeight: FontWeight.normal, fontSize: 18),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
+                      color: Colors.white),
+                ),
               ),
-            ),
-          ],
+              Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 100, vertical: 40),
+                  child: Text(
+                    gameModel.descricao,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                        color: Colors.black87),
+                  )),
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Text(
+                  gameModel.tipo,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.normal,
+                      fontSize: 18,
+                      color: Colors.black87),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
