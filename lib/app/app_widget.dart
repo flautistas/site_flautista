@@ -14,8 +14,8 @@ class AppWidget extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.indigo,
       ),
-      //home: const MyHomePage(title: 'Flautistas Site'),
-      home: const GameAddAPage(),
+      home: const MyHomePage(title: 'Flautistas Site'),
+      //home: const GameAddAPage(),
     );
   }
 }
