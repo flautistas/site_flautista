@@ -3,15 +3,12 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "assets/AssetManifest.json": "b7fee9c5b59311e2c7ad94c1771030d0",
+  "assets/AssetManifest.json": "a004c9663721326ee66788b4d3ab1ec6",
 "assets/assets/Dyinglight.jpg": "cfc1780ecc8b6ea097ae3536cb5f4231",
 "assets/assets/farmsimulator.jpg": "23176b08a2d0c562d4fc858782bf4e7e",
-"assets/assets/flautista.jpg": "f35821b3db1c04e3ce57ae7cb776d81c",
 "assets/assets/GTA5.jpg": "1f2964e702ef5772bc569729502cbed1",
 "assets/assets/music/darkorbit.mp3": "38d00822e237c3dd2731d60615670c11",
-"assets/assets/NOBEL.png": "e751632bf9689b4ae686c35ffe3d432c",
 "assets/assets/theforest.jpg": "a721ca76f0a0af6aa4eac08027701f9f",
-"assets/assets/UNDRAWJOGOS.png": "64fccb01fa8d9633e6486e3ba628a026",
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
 "assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1",
 "assets/NOTICES": "95a64c2b35cabfa9a578cc5ed9111205",
@@ -21,9 +18,9 @@ const RESOURCES = {
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"index.html": "2114d09c83d1e3c540afd943be89db9d",
-"/": "2114d09c83d1e3c540afd943be89db9d",
-"main.dart.js": "e6d1fd778e330968496780723ad86f30",
+"index.html": "2b8ae592c35635e1aca52500f32baca4",
+"/": "2b8ae592c35635e1aca52500f32baca4",
+"main.dart.js": "b8a198386ca645e0f63b168d69c58ce6",
 "manifest.json": "73eec429d512f3aa481de6ffc84a1ee6",
 "version.json": "0127d221257fda87950f1181c81cfcfb"
 };
