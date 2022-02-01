@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:site_flautistas/app/pages/game_add/game_add_page.dart';
 
 import 'pages/home/home_page.dart';
 
@@ -13,7 +14,8 @@ class AppWidget extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.indigo,
       ),
-      home: const MyHomePage(title: 'Flautistas Site'),
+      //home: const MyHomePage(title: 'Flautistas Site'),
+      home: const GameAddAPage(),
     );
   }
 }
