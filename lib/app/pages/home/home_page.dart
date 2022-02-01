@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:site_flautistas/app/functions/games_service.dart';
 import 'package:site_flautistas/app/models/game_model.dart';
+import 'package:site_flautistas/app/pages/game_add/game_add_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -31,6 +32,18 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(18, 10, 143, 20),
         title: Text(widget.title),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.add),
+            tooltip: 'Adicionar Jogo',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const GameAddAPage()),
+              );
+            },
+          ),
+        ],
       ),
       body: Stack(
         children: [
@@ -72,8 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: SingleChildScrollView(
           child: FutureBuilder<List<GameModel>>(
             future: games,
-            builder: (BuildContext context,
-                AsyncSnapshot<List<GameModel>> snapshot) {
+            builder: (BuildContext context, AsyncSnapshot<List<GameModel>> snapshot) {
               if (snapshot.hasError) {
                 return const Text("Ocorreu um erro nessa merda");
               }
@@ -87,8 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 return GridView.count(
                   primary: false,
                   shrinkWrap: true,
-                  crossAxisCount:
-                      MediaQuery.of(context).size.width < 400 ? 1 : 2,
+                  crossAxisCount: MediaQuery.of(context).size.width < 400 ? 1 : 2,
                   children: [
                     for (var game in gamesFirebase) _buildCard(game),
                   ],
@@ -141,10 +152,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 flex: 3,
                 child: ElevatedButton(
                   style: ButtonStyle(
-                      shadowColor:
-                          MaterialStateProperty.all(Colors.transparent),
-                      overlayColor:
-                          MaterialStateProperty.all(Colors.transparent)),
+                      shadowColor: MaterialStateProperty.all(Colors.transparent), overlayColor: MaterialStateProperty.all(Colors.transparent)),
                   child: Image.network(
                     gameModel.imagem,
                     fit: BoxFit.fitHeight,
@@ -162,30 +170,26 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 child: Text(
                   gameModel.nome,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25,
-                      color: Colors.white),
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 25, color: Colors.white),
                 ),
               ),
               Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 100, vertical: 40),
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
                   child: Text(
                     gameModel.descricao,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        color: Colors.black87),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 4,
+                    softWrap: true,
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Colors.black87),
                   )),
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: Text(
                   gameModel.tipo,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.normal,
-                      fontSize: 18,
-                      color: Colors.black87),
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: true,
+                  maxLines: 2,
+                  style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 18, color: Colors.black87),
                 ),
               ),
             ],
