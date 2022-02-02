@@ -87,6 +87,7 @@ class _GameAddAPageState extends State<GameAddAPage> {
                       const DefaultFormField(
                         text: 'Nome do Jogo',
                         icon: Icons.sports_esports,
+                        obscure: false,
                       ),
                       const SizedBox(
                         height: 20,
@@ -95,6 +96,7 @@ class _GameAddAPageState extends State<GameAddAPage> {
                       const DefaultFormField(
                         text: 'Descrição do Jogo',
                         icon: Icons.description,
+                        obscure: false,
                       ),
                       const SizedBox(
                         height: 20,
@@ -103,13 +105,17 @@ class _GameAddAPageState extends State<GameAddAPage> {
                       const DefaultFormField(
                         text: 'Link do Jogo',
                         icon: Icons.add_link,
+                        obscure: false,
                       ),
                       const SizedBox(
                         height: 20,
                         width: 20,
                       ),
                       const DefaultFormField(
-                          text: 'Tipo do Jogo', icon: Icons.batch_prediction),
+                        text: 'Tipo do Jogo',
+                        icon: Icons.batch_prediction,
+                        obscure: false,
+                      ),
                       const SizedBox(
                         height: 20,
                         width: 20,
@@ -117,6 +123,7 @@ class _GameAddAPageState extends State<GameAddAPage> {
                       const DefaultFormField(
                         text: 'Link da imagem do Jogo',
                         icon: Icons.add_link,
+                        obscure: false,
                       ),
                       const SizedBox(
                         height: 30,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:site_flautistas/app/constants/default_colors.dart';
 import 'package:site_flautistas/app/pages/home/home_page.dart';
+import 'package:site_flautistas/app/pages/register_page/register_page.dart';
 import 'package:site_flautistas/app/widgets/default_form_field.dart';
 
 class LoginPage extends StatefulWidget {
@@ -19,7 +20,7 @@ class _LoginPage extends State<LoginPage> {
       backgroundColor: DefaultColors.blueStranger,
       appBar: AppBar(
         title: const Text(
-          'Página de Login',
+          'Flautistas Site',
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: DefaultColors.blueStranger,
@@ -51,7 +52,7 @@ class _LoginPage extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
-                    width: 360,
+                    width: 600,
                     child: Column(children: const [
                       Text(
                         '''Faça o login em nosso site''',
@@ -62,9 +63,19 @@ class _LoginPage extends State<LoginPage> {
                         ),
                       ),
                       SizedBox(
-                        height: 30,
+                        height: 80,
                       ),
                     ]),
+                  ),
+                  Container(
+                    height: 200,
+                    width: 300,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(150),
+                      image: const DecorationImage(
+                          image: AssetImage('assets/FLAUTA.png'),
+                          fit: BoxFit.fill),
+                    ),
                   ),
                   Form(
                     key: keyForm,
@@ -73,13 +84,19 @@ class _LoginPage extends State<LoginPage> {
                       child: Column(
                         children: [
                           const DefaultFormField(
-                              text: 'Entre com seu email', icon: Icons.email),
+                            text: 'Entre com seu email',
+                            icon: Icons.email,
+                            obscure: false,
+                          ),
                           const SizedBox(
                             height: 20,
                             width: 20,
                           ),
                           const DefaultFormField(
-                              text: 'Entre com sua senha', icon: Icons.lock),
+                            text: 'Entre com sua senha',
+                            icon: Icons.lock,
+                            obscure: true,
+                          ),
                           const SizedBox(
                             height: 20,
                             width: 20,
@@ -109,32 +126,69 @@ class _LoginPage extends State<LoginPage> {
                           ),
                           Row(
                             children: [
-                              _loginWithButton(
+                              _loginButton(
                                   image: 'assets/github.png', isActive: true),
                               const SizedBox(
                                 height: 20,
                                 width: 20,
                               ),
-                              _loginWithButton(
+                              _loginButton(
                                   image: 'assets/facebook.png', isActive: true),
                               const SizedBox(
                                 height: 20,
                                 width: 20,
                               ),
-                              _loginWithButton(
+                              _loginButton(
                                   image: 'assets/google.png', isActive: true),
                             ],
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              (MediaQuery.of(context).size.width);
-                            },
-                            child: const Text(
-                              "Registre-se aqui!",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20),
+                          const SizedBox(
+                            height: 20,
+                            width: 20,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text(
+                                'Não possui uma conta?',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 15),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const RegisterPage(),
+                                    ),
+                                  );
+                                },
+                                child: const Padding(
+                                  padding: EdgeInsets.all(5),
+                                  child: Text(
+                                    "Registre-se aqui!",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w100,
+                                        fontSize: 17),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 30,
+                            width: 30,
+                          ),
+                          Container(
+                            height: 200,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(150),
+                              image: const DecorationImage(
+                                  image:
+                                      AssetImage('assets/BANNERDIGAOTKS.png'),
+                                  fit: BoxFit.fill),
                             ),
                           ),
                         ],
@@ -153,23 +207,23 @@ class Menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 30),
+      padding: const EdgeInsets.all(10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              _menuItem(title: 'Home'),
-              _menuItem(title: 'Sobre nós'),
-              _menuItem(title: 'Fale Conosco'),
-              _menuItem(title: 'Ajuda'),
-            ],
-          ),
-          Row(
-            children: [
-              _menuItem(title: 'Entrar', isActive: true),
-              _registerButton()
+              SizedBox(
+                child: Row(
+                  children: [
+                    _menuItem(title: 'Home'),
+                    _menuItem(title: 'Sobre nós'),
+                    _menuItem(title: 'Fale Conosco'),
+                    _menuItem(title: 'Ajuda'),
+                  ],
+                ),
+              )
             ],
           ),
         ],
@@ -179,7 +233,7 @@ class Menu extends StatelessWidget {
 
   Widget _menuItem({String title = 'Title Menu', isActive = false}) {
     return Padding(
-      padding: const EdgeInsets.only(right: 75),
+      padding: const EdgeInsets.all(15),
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
         child: Column(
@@ -199,33 +253,9 @@ class Menu extends StatelessWidget {
       ),
     );
   }
-
-  Widget _registerButton() {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.grey,
-            spreadRadius: 10,
-            blurRadius: 12,
-          ),
-        ],
-      ),
-      child: const Text(
-        'Register',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          color: Colors.black54,
-        ),
-      ),
-    );
-  }
 }
 
-Widget _loginWithButton({String? image, bool isActive = false}) {
+Widget _loginButton({String? image, bool isActive = false}) {
   return Container(
     width: 90,
     height: 70,

@@ -5,8 +5,10 @@ import 'package:site_flautistas/app/constants/default_colors.dart';
 class DefaultFormField extends StatelessWidget {
   final String text;
   final IconData icon;
+  final bool obscure;
 
-  const DefaultFormField({Key? key, required this.text, required this.icon})
+  const DefaultFormField(
+      {Key? key, required this.text, required this.icon, required this.obscure})
       : super(key: key);
 
   @override
@@ -24,6 +26,7 @@ class DefaultFormField extends StatelessWidget {
         ],
       ),
       child: TextFormField(
+        obscureText: obscure,
         validator: validarCampoVazio,
         decoration: InputDecoration(
             icon: Icon(
