@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:site_flautistas/app/constants/default_colors.dart';
+import 'package:site_flautistas/app/pages/home/home_page.dart';
 import 'package:site_flautistas/app/widgets/default_form_field.dart';
 
 class GameAddAPage extends StatefulWidget {
@@ -20,12 +21,22 @@ class _GameAddAPageState extends State<GameAddAPage> {
       backgroundColor: DefaultColors.blueStranger,
       appBar: AppBar(
         title: const Text('Adicionar Jogo'),
+        backgroundColor: DefaultColors.blueStranger,
         actions: [
           IconButton(
-            icon: const Icon(Icons.menu),
+            icon: const Icon(
+              Icons.menu,
+              color: Colors.white,
+            ),
             tooltip: 'Ir para o menu',
             onPressed: () {
-              // handle the press
+              Navigator.pop(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const MyHomePage(
+                          title: 'Flautistas Site',
+                        )),
+              );
             },
           ),
         ],

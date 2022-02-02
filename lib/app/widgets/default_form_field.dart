@@ -26,7 +26,9 @@ class DefaultFormField extends StatelessWidget {
       child: TextFormField(
         validator: validarCampoVazio,
         decoration: InputDecoration(
-            icon: Icon(icon),
+            icon: Icon(
+              icon,
+            ),
             border: InputBorder.none,
             hintText: text,
             hintStyle: const TextStyle(color: Colors.grey)),
