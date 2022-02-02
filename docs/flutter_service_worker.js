@@ -3,10 +3,15 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "assets/AssetManifest.json": "b7fee9c5b59311e2c7ad94c1771030d0",
+  "assets/AssetManifest.json": "7f3d481a38c8e3f075bc1f92563130a4",
+"assets/assets/BANNERDIGAOTKS.PNG": "12c2a6247dffb4f8e6e11cd724db70a9",
 "assets/assets/Dyinglight.jpg": "cfc1780ecc8b6ea097ae3536cb5f4231",
+"assets/assets/facebook.png": "3b149a0e5a55d5a92f114f091364de40",
 "assets/assets/farmsimulator.jpg": "23176b08a2d0c562d4fc858782bf4e7e",
+"assets/assets/FLAUTA.png": "adc3f8edff4c28775e4692f2d0bb87b7",
 "assets/assets/flautista.jpg": "f35821b3db1c04e3ce57ae7cb776d81c",
+"assets/assets/github.png": "73f6facb5690334ce00e33382c60bda6",
+"assets/assets/google.png": "66047864288a9df7b69c6bc3c94d16f5",
 "assets/assets/GTA5.jpg": "1f2964e702ef5772bc569729502cbed1",
 "assets/assets/music/darkorbit.mp3": "38d00822e237c3dd2731d60615670c11",
 "assets/assets/NOBEL.png": "e751632bf9689b4ae686c35ffe3d432c",
@@ -21,9 +26,9 @@ const RESOURCES = {
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"index.html": "24667757b1f155fa8a812d8a5431e46d",
-"/": "24667757b1f155fa8a812d8a5431e46d",
-"main.dart.js": "6a578cdc6c351ea95480ad5f4af88826",
+"index.html": "86f8ab4fb9fde7bf71d3dd78176f8f87",
+"/": "86f8ab4fb9fde7bf71d3dd78176f8f87",
+"main.dart.js": "e1fb1488919a5c196aaf6790904cf7cd",
 "manifest.json": "73eec429d512f3aa481de6ffc84a1ee6",
 "version.json": "0127d221257fda87950f1181c81cfcfb"
 };
