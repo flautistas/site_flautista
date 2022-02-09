@@ -142,9 +142,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       Navigator.pop(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const LoginPage(
-                                  title: 'Flautistas Site',
-                                )),
+                            builder: (context) => const LoginPage()),
                       );
                     },
                     child: const Text(

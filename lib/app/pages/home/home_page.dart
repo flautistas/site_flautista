@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audioplayers.dart';
+import 'package:site_flautistas/app/api/google_signin_api.dart';
 import 'package:site_flautistas/app/constants/default_colors.dart';
 import 'package:site_flautistas/app/functions/games_service.dart';
 import 'package:site_flautistas/app/models/game_model.dart';
@@ -17,86 +17,50 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  AudioPlayer audioPlayer = AudioPlayer();
-
-  Future<void> playBackground() async {
-    await audioPlayer.play('assets/music/darkorbit.mp3');
-  }
-
   @override
   void initState() {
     super.initState();
-    playBackground();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: DefaultColors.blueStranger,
-        title: Text(
-          widget.title,
-          style: const TextStyle(color: Colors.white),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.add,
-              color: Colors.white,
-            ),
-            tooltip: 'Adicionar Jogo',
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const GameAddAPage()),
-              );
-            },
+        appBar: AppBar(
+          backgroundColor: DefaultColors.blueStranger,
+          title: Text(
+            widget.title,
+            style: const TextStyle(color: Colors.white),
           ),
-          IconButton(
-            icon: const Icon(
-              Icons.account_circle,
-              color: Colors.white,
-            ),
-            tooltip: 'Login',
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const LoginPage(
-                          title: 'Flautistas Site',
-                        )),
-              );
-            },
-          ),
-        ],
-      ),
-      body: Stack(
-        children: [
-          Container(
-            constraints: const BoxConstraints.expand(),
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                stops: [
-                  0.0,
-                  0.19,
-                  0.85,
-                  1,
-                ],
-                colors: [
-                  DefaultColors.blueStranger,
-                  DefaultColors.blueNocturne,
-                  DefaultColors.blueWhite,
-                  DefaultColors.blueStranger
-                ],
+          actions: [
+            IconButton(
+              icon: const Icon(
+                Icons.add,
+                color: Colors.white,
               ),
+              tooltip: 'Adicionar Jogo',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const GameAddAPage()),
+                );
+              },
             ),
-          ),
-          _buildBody(),
-        ],
-      ),
-    );
+            IconButton(
+              icon: const Icon(
+                Icons.account_circle,
+                color: Colors.white,
+              ),
+              tooltip: 'Logout',
+              onPressed: () async {
+                await GoogleSignInApi.logout();
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => const LoginPage()),
+                );
+              },
+            ),
+          ],
+        ),
+        body: _buildStack());
   }
 
   Container _buildBody() {
@@ -237,6 +201,35 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
+    );
+  }
+
+  Stack _buildStack() {
+    return Stack(
+      children: [
+        Container(
+          constraints: const BoxConstraints.expand(),
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              stops: [
+                0.0,
+                0.19,
+                0.85,
+                1,
+              ],
+              colors: [
+                DefaultColors.blueStranger,
+                DefaultColors.blueNocturne,
+                DefaultColors.blueWhite,
+                DefaultColors.blueStranger
+              ],
+            ),
+          ),
+        ),
+        _buildBody(),
+      ],
     );
   }
 }

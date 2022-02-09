@@ -20,7 +20,10 @@ class _GameAddAPageState extends State<GameAddAPage> {
     return Scaffold(
       backgroundColor: DefaultColors.blueStranger,
       appBar: AppBar(
-        title: const Text('Adicionar Jogo'),
+        title: const Text('Adicionar Jogo',
+            style: TextStyle(
+              color: Colors.white,
+            )),
         backgroundColor: DefaultColors.blueStranger,
         actions: [
           IconButton(
