@@ -34,19 +34,6 @@ class _MyHomePageState extends State<MyHomePage> {
           actions: [
             IconButton(
               icon: const Icon(
-                Icons.add,
-                color: Colors.white,
-              ),
-              tooltip: 'Adicionar Jogo',
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const GameAddAPage()),
-                );
-              },
-            ),
-            IconButton(
-              icon: const Icon(
                 Icons.account_circle,
                 color: Colors.white,
               ),
@@ -58,6 +45,29 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
             ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const GameAddAPage()),
+                  );
+                },
+                style: ButtonStyle(
+                    elevation: MaterialStateProperty.all(2.0),
+                    backgroundColor:
+                        MaterialStateProperty.all(DefaultColors.blueStranger)),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    height: 100,
+                    width: 100,
+                    child: const Text(
+                      "Adicionar Jogo",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ))
           ],
         ),
         body: _buildStack());
